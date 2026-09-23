@@ -35,19 +35,19 @@ const [trackingLoading, setTrackingLoading] = useState(false); const [formData, 
   });
 };
 
-  const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
 
-const newOrderNumber = `MBU-${new Date().getFullYear()}-${Date.now()}`;
+  const newOrderNumber = `MBU-${new Date().getFullYear()}-${Date.now()}`;
 
-const { error } = await supabase
-  .from("orders")
-  .insert([
-    {
-      ...formData,
-      order_number: newOrderNumber,
-    },
-  ]);
+  const { error } = await supabase
+    .from("orders")
+    .insert([
+      {
+        ...formData,
+        order_number: newOrderNumber,
+      },
+    ]);
 
   if (error) {
     console.error("Order submission error:", error);
@@ -55,11 +55,33 @@ const { error } = await supabase
     return;
   }
 
-setOrderNumber(newOrderNumber);
+  // Send confirmation email
+  try {
+    const emailResponse = await fetch("/api/send-order-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        orderNumber: newOrderNumber,
+        product: formData.product,
+        quantity: formData.quantity,
+      }),
+    });
 
-setSubmitted(true);
+    if (!emailResponse.ok) {
+      const emailError = await emailResponse.json().catch(() => ({}));
+      console.error("Confirmation email error:", emailError);
+    }
+  } catch (emailError) {
+    console.error("Confirmation email request failed:", emailError);
+  }
 
+  setOrderNumber(newOrderNumber);
 
+  setSubmitted(true);
 };
 
   const openOrderForm = () => {
