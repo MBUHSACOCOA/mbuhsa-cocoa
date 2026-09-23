@@ -55,8 +55,11 @@ const { error } = await supabase
     return;
   }
 
-  setOrderNumber(newOrderNumber);
+setOrderNumber(newOrderNumber);
+
 setSubmitted(true);
+
+
 };
 
   const openOrderForm = () => {
@@ -349,8 +352,13 @@ onClick={() => window.location.href = "/admin"}
   {orderNumber}
 </p>
                 <p>
-                  Thank you, {formData.name}.
-                </p>
+  Thank you, {formData.name}.
+</p>
+
+<p style={{ lineHeight: "1.7", color: "#5a4638" }}>
+  Please save your order number. You can use it together with your email
+  address in the Track Order section to check your order status.
+</p>
 
               
               
