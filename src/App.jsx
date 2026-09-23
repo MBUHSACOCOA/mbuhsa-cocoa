@@ -95,8 +95,8 @@ if (!trackingEmail.trim()) {
     alert("Order not found. Please check your order number.");
     return;
   }
-
- setTrackedOrder(data);
+console.log("Tracked order data:", data);
+setTrackedOrder(Array.isArray(data) ? data[0] : data);
 
 };
   const closeOrderForm = () => {
