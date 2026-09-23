@@ -78,12 +78,10 @@ if (!trackingEmail.trim()) {
   setTrackingLoading(true);
   setTrackedOrder(null);
 
- const { data, error } = await supabase
-  .from("orders")
-  .select("*")
-.eq("order_number", trackingNumber.trim())
-.eq("email", trackingEmail.trim())
-.maybeSingle();
+ const { data, error } = await supabase.rpc("track_order", {
+  p_order_number: trackingNumber.trim(),
+  p_email: trackingEmail.trim(),
+});
 
   setTrackingLoading(false);
 
