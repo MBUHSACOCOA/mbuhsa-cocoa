@@ -404,19 +404,7 @@ onClick={() => window.location.href = "/admin"}
           <section id="home" style={styles.hero}>
             <div style={styles.heroContent}>
 
-              <p style={styles.eyebrow}>
-  PREMIUM AFRICAN COCOA • FARM TO GLOBAL MARKET
-</p>
 
-              <h1 style={styles.heroTitle}>
-  Premium African Cocoa
-  <br />
-  <span>For Global Markets.</span>
-</h1>
-
-              <p style={styles.heroText}>
-  MBUHSA COCOA connects quality African cocoa with trusted traders, processors, manufacturers and international buyers, building reliable supply from farm to global market.
-</p>
               <button
                 onClick={openOrderForm}
                 style={styles.heroButton}
@@ -1015,24 +1003,31 @@ const styles = {
   textShadow: "0 3px 12px rgba(0, 0, 0, 0.65)",
 },
 
-  eyebrow: {
-    color: "#d4a64a",
-    letterSpacing: "4px",
-    fontWeight: "bold",
-  },
+ eyebrow: {
+  color: "#d4a64a",
+  fontSize: "12px",
+  letterSpacing: "1.5px",
+  fontWeight: "bold",
+  lineHeight: "1.7",
+  marginBottom: "18px",
+  maxWidth: "420px",
+},
 
-  heroTitle: {
-   fontSize: "clamp(38px, 7vw, 80px)",
-    lineHeight: "1.05",
-    margin: "20px 0",
-  },
+ heroTitle: {
+  fontSize: "clamp(36px, 6vw, 68px)",
+  lineHeight: "1.12",
+  margin: "24px 0 22px",
+  maxWidth: "900px",
+},
 
-  heroText: {
-    color: "#e5d8c9",
-    fontSize: "clamp(16px, 2vw, 18px)",
-    lineHeight: "1.8",
-    maxWidth: "650px",
-  },
+ heroText: {
+  color: "#e5d8c9",
+  fontSize: "clamp(15px, 1.8vw, 17px)",
+  lineHeight: "1.9",
+  maxWidth: "620px",
+  marginTop: "0",
+  marginBottom: "28px",
+},
 heroButton: {
   marginTop: "25px",
  padding: "15px 26px",
